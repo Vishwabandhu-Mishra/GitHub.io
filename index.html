@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandhu and Brothers Corporation Pvt Ltd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #1e293b;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 14px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-illustration {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Apps Section */
+        .apps {
+            padding: 60px 0;
+            background: #f8fafc;
+        }
+
+        .apps-text {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .app-item {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .app-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .app-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .app-description {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .modal p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .product-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .product-option {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .product-option:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+        }
+
+        /* APK Download Page Styles */
+        .apk-download-container {
+            padding: 40px 0;
+            background: white;
+        }
+
+        .apk-download-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            color: #334155;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 20px;
+            transition: background 0.2s;
+        }
+
+        .back-button:hover {
+            background: #e2e8f0;
+        }
+
+        .apk-download-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+          /* Updated APK List Styles */
+        .apk-list {
+            width: 100%;
+        }
+
+        .apk-item {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+            align-items: center;
+        }
+
+        .apk-name-column {
+            flex: 1;
+            min-width: 200px;
+            font-weight: 500;
+            color: #1e293b;
+            padding: 10px 0;
+        }
+
+        .apk-link-column {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .apk-link-box {
+            width: 100%;
+            padding: 12px;
+            background-color: #f1f5f9;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 14px;
+            color: #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .apk-link-box:hover {
+            background-color: #e2e8f0;
+            border-color: #3b82f6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .apk-download-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .back-button {
+                margin-right: 0;
+            }
+
+            .apk-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .apk-link-column {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">B</div>
+                    Bandhu and Brothers Corporation
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a onclick="showCustomers()">Customers</a></li>
+                        <li><a onclick="showProduct()">Product</a></li>
+                        <li><a onclick="showInformation()">Information</a></li>
+                        <li><a onclick="showCarrier()">Carrier</a></li>
+                        <li><a onclick="showAbout()">About</a></li>
+                    </ul>
+                    <div class="auth-buttons">
+                        <a href="#" class="btn btn-secondary">Sign in</a>
+                        <a href="#" class="btn btn-primary">Sign up</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Develop confidently.</h1>
+                        <p>Bandhu and Brothers Corporation is a leading software development company that creates innovative solutions by building cutting-edge applications and software products for businesses worldwide.</p>
+                        <a href="#" class="btn btn-primary">Get started</a>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-illustration">
+                            Software Development Excellence
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Apps Section -->
+        <section class="apps">
+            <div class="container">
+                <p class="apps-text">Our featured applications developed by Bandhu and Brothers Corporation.</p>
+                <div class="apps-grid">
+                    <div class="app-item" onclick="openApp('hiapp')">
+                        <div class="app-icon">📱</div>
+                        <div class="app-name">Hiapp</div>
+                        <div class="app-description">A comprehensive communication and social networking application</div>
+                    </div>
+                    <div class="app-item" onclick="openApp('school')">
+                        <div class="app-icon">🎓</div>
+                        <div class="app-name">School Management App</div>
+                        <div class="app-description">Complete school administration and management solution</div>
+                    </div>
+                    <div class="app-item" onclick="openApp('income')">
+                        <div class="app-icon">💰</div>
+                        <div class="app-name">Income Manager App</div>
+                        <div class="app-description">Personal finance and income tracking application</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Customers Modal -->
+    <div id="customersModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('customersModal')">&times;</span>
+            <h2>Customers</h2>
+            <p>No data available</p>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('productModal')">&times;</span>
+            <h2>Product</h2>
+            <div class="product-options">
+                <div class="product-option" onclick="showApkDownloadPage()">
+                    📱 Download APK
+                </div>
+                <div class="product-option" onclick="showOurApps()">
+                    🚀 Our Apps
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Information Modal -->
+    <div id="informationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('informationModal')">&times;</span>
+            <h2>Information</h2>
+            <p>Coming Soon...</p>
+        </div>
+    </div>
+
+    <!-- Carrier Modal -->
+    <div id="carrierModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('carrierModal')">&times;</span>
+            <h2>Carrier</h2>
+            <p>Coming Soon...</p>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+            <h2>About Bandhu and Brothers Corporation Pvt Ltd</h2>
+            <p><strong>Bandhu and Brothers Private Company Limited</strong> is a premier software development company dedicated to creating innovative and cutting-edge software solutions.</p>
+            
+            <p>Our company specializes in developing a wide range of software applications, from mobile apps to enterprise solutions. We have our own portfolio of software products that serve various industries and client needs.</p>
+            
+            <p>With a commitment to excellence and innovation, we strive to deliver high-quality software that helps businesses grow and succeed in the digital age. Our team of experienced developers works tirelessly to create solutions that are both functional and user-friendly.</p>
+            
+            <p><strong>Developer:</strong> Vishwa Bandhu Mishra</p>
+            <p><strong>Email:</strong> Bandhuandbrothercorporation@gmail.com</p>
+            
+            <p>We believe in building long-term relationships with our clients by providing exceptional service and support throughout the development process and beyond.</p>
+        </div>
+    </div>
+
+  
+  
+    <!-- APK Download Page (hidden by default) -->
+    <div id="apkDownloadPage" style="display: none;">
+        <div class="apk-download-container">
+            <div class="container">
+                <div class="apk-download-header">
+                    <a href="#" class="back-button" onclick="goBack()">
+                        ← Back
+                    </a>
+                    <h1 class="apk-download-title">Product</h1>
+                </div>
+                
+                <div class="apk-list">
+                    <div class="apk-item">
+                        <div class="apk-name-column">
+                            Income Manager App
+                        </div>
+                        <div class="apk-link-column">
+                            <div class="apk-link-box" onclick="downloadApk()">
+                               https://vishwabandhu-mishra.github.io/B-d.github.io/app-release.apk
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="apk-item">
+                        <div class="apk-name-column">
+                            Hiapp
+                        </div>
+                        <div class="apk-link-column">
+                            <div class="apk-link-box" style="color: #64748b; cursor: not-allowed;">
+                                Coming Soon (Link will be available soon)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="apk-item">
+                        <div class="apk-name-column">
+                            School Management App
+                        </div>
+                        <div class="apk-link-column">
+                            <div class="apk-link-box" style="color: #64748b; cursor: not-allowed;">
+                                Coming Soon (Link will be available soon)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+  
+  
+  
+      <script>
+        // Modal Functions
+        function showCustomers() {
+            document.getElementById('customersModal').style.display = 'block';
+        }
+
+        function showProduct() {
+            document.getElementById('productModal').style.display = 'block';
+        }
+
+        function showInformation() {
+            document.getElementById('informationModal').style.display = 'block';
+        }
+
+        function showCarrier() {
+            document.getElementById('carrierModal').style.display = 'block';
+        }
+
+        function showAbout() {
+            document.getElementById('aboutModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showApkDownloadPage() {
+            // Hide main content and show APK download page
+            document.querySelector('main').style.display = 'none';
+            document.getElementById('apkDownloadPage').style.display = 'block';
+            closeModal('productModal');
+        }
+
+        function goBack() {
+            // Show main content and hide APK download page
+            document.querySelector('main').style.display = 'block';
+            document.getElementById('apkDownloadPage').style.display = 'none';
+        }
+
+        function showOurApps() {
+            alert('Redirecting to our apps page...');
+            closeModal('productModal');
+        }
+
+
+function downloadApk() {
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = 'https://vishwabandhu-mishra.github.io/B-d.github.io/app-release.apk';
+
+    link.download = 'IncomeManagerApp.apk';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Also open in new tab as fallback
+    window.open('https://vishwabandhu-mishra.github.io/B-d.github.io/app-release.apk', '_blank');
+}
+
+
+
+        function openApp(appName) {
+            switch(appName) {
+                case 'hiapp':
+                    alert('Opening Hiapp - Communication & Social Networking Application');
+                    break;
+                case 'school':
+                    alert('Opening School Management App - Complete Administration Solution');
+                    break;
+                case 'income':
+                    alert('Opening Income Manager App - Personal Finance Tracker');
+                    break;
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = ['customersModal', 'productModal', 'informationModal', 'carrierModal', 'aboutModal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
